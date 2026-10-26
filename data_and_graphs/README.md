@@ -7,7 +7,8 @@ Espacio central para la gestión de datasets limpios, ontologías de mapeo psico
 ```text
 data_and_graphs/
 ├── data/                 # Datasets limpios (ej. profesiones, rasgos, habilidades)
-│   └── sample_professions.csv # Muestra de datos representativos
+│   ├── riasec_dataset.csv # Dataset con 315 respuestas al inventario RIASEC (q1 a q30)
+│   └── sample_professions.csv # Catálogo de profesiones y habilidades requeridas
 ├── mappings/             # Diccionarios de mapeo psicológico (Holland RIASEC, Big Five, etc.)
 │   ├── psychological_dimensions.json
 │   └── riasec_mapping.json

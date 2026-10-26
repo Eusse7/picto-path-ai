@@ -47,6 +47,8 @@ data_and_graphs/data/*.zip
 data_and_graphs/data/*.tar.gz
 !data_and_graphs/data/.gitkeep
 !data_and_graphs/data/sample_*.csv
+!data_and_graphs/data/riasec_dataset.csv
+*.zip
 
 # Database storage & local mounts
 postgres_data/
