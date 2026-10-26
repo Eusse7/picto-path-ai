@@ -1,10 +1,10 @@
-# Picto-Path AI 🧭🎨
+# Picto-Path AI 
 
 **Picto-Path AI** es un sistema inteligente de orientación vocacional que reemplaza los cuestionarios de texto tradicionales por un test interactivo de estímulos visuales. Analiza las elecciones visuales del usuario para clasificar rasgos de personalidad, mapearlos con marcos psicológicos validados y recomendar perfiles profesionales afines mediante grafos de conocimiento y similitud vectorial.
 
 ---
 
-## 🏗️ Estructura del Repositorio
+## Estructura del Repositorio
 
 El proyecto está organizado de forma modular para permitir el trabajo en paralelo de los diferentes componentes:
 
@@ -29,7 +29,7 @@ picto-path-ai/
 
 ---
 
-## 🚀 Inicio Rápido con Docker Compose
+##  Inicio Rápido con Docker Compose
 
 Para levantar el entorno completo de desarrollo con un solo comando:
 
@@ -51,7 +51,7 @@ Para levantar el entorno completo de desarrollo con un solo comando:
 
 ---
 
-## 🌿 Estrategia de Ramas (Trunk-Based Modificado)
+## Estrategia de Ramas
 
 Para garantizar un ritmo ágil y evitar conflictos de integración:
 
@@ -65,14 +65,3 @@ Para garantizar un ritmo ágil y evitar conflictos de integración:
 * **Integración continua**: Cada rama se fusiona mediante Pull Request (PR) a `main` cada **1 o 2 días**. No se deben acumular cambios aislados por más tiempo para prevenir colisiones de código y dependencias rotas.
 
 ---
-
-## 📅 Cronograma de Ejecución (14 Días)
-
-Plan de trabajo estructurado en 4 fases secuenciales:
-
-| Fase | Días | Enfoque | Objetivos Principales |
-| :--- | :---: | :--- | :--- |
-| **Fase 1: Cimientos Paralelos** | **1 - 4** | Desarrollo desacoplado y contratos de datos | • Entrenar un modelo base/funcional preliminar.<br>• Definir y entregar la matriz de mapeo psicológico y dataset estructurado.<br>• Levantar la API en FastAPI exponiendo contratos y datos simulados (*mocks*).<br>• Diseñar y maquetar las pantallas principales consumiendo los mocks de la API. |
-| **Fase 2: El Ensamble** | **5 - 8** | Integración extremo a extremo | • Integrar el modelo de machine learning en el pipeline real de la API.<br>• Conectar el frontend a los endpoints verdaderos en reemplazo de los mocks.<br>• Validar el flujo continuo: Selección de imágenes ➡️ Predicción ➡️ Resultados. |
-| **Fase 3: Bases de Datos Complejas** | **9 - 11** | Enriquecimiento con Grafos y Vectores | • Conectar y poblar Neo4j para mapear relaciones entre habilidades, comportamientos y profesiones.<br>• Integrar ChromaDB para búsqueda semántica/vectorial de compatibilidad vocacional.<br>• Habilitar almacenamiento persistente de historial en PostgreSQL. |
-| **Fase 4: Congelamiento de Código** | **12 - 14** | Calidad, Estabilidad y Cierre (*Code Freeze*) | • **Cero funcionalidades nuevas**.<br>• Corrección exhaustiva de bugs y pruebas de integración.<br>• Refinamiento visual, tiempos de respuesta y accesibilidad.<br>• Documentación final, manuales de despliegue y preparación de la presentación. |
