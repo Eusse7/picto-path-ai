@@ -1,0 +1,35 @@
+{
+  "framework": "RIASEC_BigFive_Hybrid",
+  "dimensions": {
+    "R": {
+      "name": "Realista",
+      "visual_stimuli_tags": ["maquinaria", "aire_libre", "herramientas", "construccion"],
+      "associated_traits": ["practico", "concreto", "orientado_a_objetos"]
+    },
+    "I": {
+      "name": "Investigador",
+      "visual_stimuli_tags": ["datos", "laboratorio", "patrones", "investigacion_cientifica"],
+      "associated_traits": ["analitico", "curioso", "pensamiento_sistemico"]
+    },
+    "A": {
+      "name": "Artístico",
+      "visual_stimuli_tags": ["expresion_visual", "diseno", "musica", "composicion_abstracta"],
+      "associated_traits": ["creativo", "original", "intuitivo"]
+    },
+    "S": {
+      "name": "Social",
+      "visual_stimuli_tags": ["comunidad", "colaboracion", "ensenanza", "cuidado"],
+      "associated_traits": ["empatico", "comunicativo", "orientado_al_servicio"]
+    },
+    "E": {
+      "name": "Emprendedor",
+      "visual_stimuli_tags": ["liderazgo", "negociacion", "discurso", "estrategia_comercial"],
+      "associated_traits": ["persuasivo", "proactivo", "tomador_de_riesgo"]
+    },
+    "C": {
+      "name": "Convencional",
+      "visual_stimuli_tags": ["organizacion", "finanzas", "estructuras_claras", "normas"],
+      "associated_traits": ["ordenado", "metodico", "preciso"]
+    }
+  }
+}

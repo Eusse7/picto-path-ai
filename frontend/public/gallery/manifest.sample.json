@@ -1,0 +1,19 @@
+[
+  {
+    "id": "stimulus-01",
+    "category": "technical_vs_creative",
+    "title": "Resolución de problemas vs Creación conceptual",
+    "options": [
+      {
+        "option_id": "opt-A",
+        "image_url": "/gallery/tech_circuit.jpg",
+        "tag": "analitico_tecnico"
+      },
+      {
+        "option_id": "opt-B",
+        "image_url": "/gallery/art_sketch.jpg",
+        "tag": "creativo_visual"
+      }
+    ]
+  }
+]

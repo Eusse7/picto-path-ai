@@ -1,0 +1,82 @@
+# Python & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Jupyter Notebooks Checkpoints
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# Model weights and heavy artifacts (store links or DVC/remote storage)
+ai_model/models/*.pkl
+ai_model/models/*.pt
+ai_model/models/*.pth
+ai_model/models/*.onnx
+ai_model/models/*.bin
+ai_model/models/*.h5
+!ai_model/models/.gitkeep
+
+# Datasets & Heavy Data Files
+data_and_graphs/data/*.csv
+data_and_graphs/data/*.parquet
+data_and_graphs/data/*.zip
+data_and_graphs/data/*.tar.gz
+!data_and_graphs/data/.gitkeep
+!data_and_graphs/data/sample_*.csv
+
+# Database storage & local mounts
+postgres_data/
+chroma_data/
+neo4j_data/
+*.sqlite3
+*.db
+
+# Frontend / Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+frontend/dist/
+frontend/build/
+frontend/.next/
+
+# Environment Variables & Secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# IDEs & System files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini

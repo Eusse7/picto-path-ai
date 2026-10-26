@@ -1,0 +1,96 @@
+version: '3.8'
+
+services:
+  # -------------------------------------------------------------
+  # API Backend (FastAPI)
+  # -------------------------------------------------------------
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: picto_backend
+    restart: unless-stopped
+    ports:
+      - "${API_PORT:-8000}:8000"
+    environment:
+      - APP_ENV=${APP_ENV:-development}
+      - DEBUG=${DEBUG:-True}
+      - POSTGRES_USER=${POSTGRES_USER:-picto_user}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-picto_secure_password}
+      - POSTGRES_DB=${POSTGRES_DB:-picto_path_db}
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - CHROMA_HOST=chromadb
+      - CHROMA_PORT=8000
+      - NEO4J_URI=bolt://neo4j:7687
+      - NEO4J_USER=${NEO4J_USER:-neo4j}
+      - NEO4J_PASSWORD=${NEO4J_PASSWORD:-picto_neo4j_password}
+    volumes:
+      - ./backend:/app
+      - ./ai_model/models:/app/models:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+      chromadb:
+        condition: service_started
+      neo4j:
+        condition: service_started
+
+  # -------------------------------------------------------------
+  # Base de Datos Relacional: PostgreSQL (Historial y Usuarios)
+  # -------------------------------------------------------------
+  postgres:
+    image: postgres:16-alpine
+    container_name: picto_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-picto_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-picto_secure_password}
+      POSTGRES_DB: ${POSTGRES_DB:-picto_path_db}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-picto_user} -d ${POSTGRES_DB:-picto_path_db}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # -------------------------------------------------------------
+  # Base de Datos Vectorial: ChromaDB (Emparejamiento Semántico)
+  # -------------------------------------------------------------
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: picto_chromadb
+    restart: unless-stopped
+    ports:
+      - "8001:8000"
+    volumes:
+      - chroma_data:/chroma/chroma
+    environment:
+      - IS_PERSISTENT=TRUE
+      - ANONYMIZED_TELEMETRY=FALSE
+
+  # -------------------------------------------------------------
+  # Base de Datos de Grafos: Neo4j (Relaciones Habilidades/Comportamiento)
+  # -------------------------------------------------------------
+  neo4j:
+    image: neo4j:5-community
+    container_name: picto_neo4j
+    restart: unless-stopped
+    ports:
+      - "7474:7474" # Browser Web UI
+      - "7687:7687" # Bolt protocol
+    environment:
+      - NEO4J_AUTH=${NEO4J_USER:-neo4j}/${NEO4J_PASSWORD:-picto_neo4j_password}
+    volumes:
+      - neo4j_data:/data
+
+volumes:
+  postgres_data:
+    driver: local
+  chroma_data:
+    driver: local
+  neo4j_data:
+    driver: local
