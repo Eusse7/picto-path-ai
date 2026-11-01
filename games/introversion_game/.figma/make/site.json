@@ -1,0 +1,10 @@
+{
+  "description": "Un juego de exploración submarina que mide patrones de movimiento y enfoque para ofrecer una experiencia interactiva de autoevaluación de la extroversión.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

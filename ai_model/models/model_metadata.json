@@ -1,0 +1,75 @@
+{
+  "model_type": "RandomForestClassifier",
+  "pipeline_steps": [
+    "ColumnTransformer",
+    "RandomForestClassifier"
+  ],
+  "dataset_source": "data.csv",
+  "total_samples": 43744,
+  "train_samples": 34995,
+  "test_samples": 8749,
+  "numerical_features": [
+    "Age",
+    "Education",
+    "Introversion Score",
+    "Sensing Score",
+    "Thinking Score",
+    "Judging Score"
+  ],
+  "categorical_features": [
+    "Gender",
+    "Interest"
+  ],
+  "target": "Personality",
+  "classes": [
+    "ENFJ",
+    "ENFP",
+    "ENTJ",
+    "ENTP",
+    "ESFJ",
+    "ESFP",
+    "ESTJ",
+    "ESTP",
+    "INFJ",
+    "INFP",
+    "INTJ",
+    "INTP",
+    "ISFJ",
+    "ISFP",
+    "ISTJ",
+    "ISTP"
+  ],
+  "metrics": {
+    "accuracy": 0.9017,
+    "f1_macro": 0.9017,
+    "f1_weighted": 0.9017,
+    "axes_accuracy": {
+      "Energy_E_vs_I": {
+        "axis": "E/I",
+        "name": "Energy",
+        "accuracy": 0.9303,
+        "accuracy_pct": "93.03%"
+      },
+      "Perception_S_vs_N": {
+        "axis": "S/N",
+        "name": "Perception",
+        "accuracy": 0.9702,
+        "accuracy_pct": "97.02%"
+      },
+      "Judgment_T_vs_F": {
+        "axis": "T/F",
+        "name": "Judgment",
+        "accuracy": 0.9993,
+        "accuracy_pct": "99.93%"
+      },
+      "Lifestyle_J_vs_P": {
+        "axis": "J/P",
+        "name": "Lifestyle",
+        "accuracy": 0.9993,
+        "accuracy_pct": "99.93%"
+      }
+    }
+  },
+  "training_duration_seconds": 0.54,
+  "timestamp": "2026-10-31T22:26:25.910172+00:00"
+}

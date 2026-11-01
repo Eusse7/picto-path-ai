@@ -32,3 +32,20 @@ class TestResultResponse(BaseModel):
     profile_description: str
     top_careers: List[CareerRecommendation]
     is_mock: bool = False
+
+
+class MBTIPredictionRequest(BaseModel):
+    age: float = 24.0
+    gender: str = "Female"
+    education: int = 1
+    introversion_score: float = 5.0
+    sensing_score: float = 5.0
+    thinking_score: float = 5.0
+    judging_score: float = 5.0
+    interest: str = "Technology"
+
+class MBTIPredictionResponse(BaseModel):
+    predicted_mbti: str
+    personality_name: str
+    confidence: Optional[float] = None
+    source: str

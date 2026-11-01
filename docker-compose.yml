@@ -22,9 +22,6 @@ services:
       - POSTGRES_PORT=5432
       - CHROMA_HOST=chromadb
       - CHROMA_PORT=8000
-      - NEO4J_URI=bolt://neo4j:7687
-      - NEO4J_USER=${NEO4J_USER:-neo4j}
-      - NEO4J_PASSWORD=${NEO4J_PASSWORD:-picto_neo4j_password}
     volumes:
       - ./backend:/app
       - ./ai_model/models:/app/models:ro
@@ -32,8 +29,6 @@ services:
       postgres:
         condition: service_healthy
       chromadb:
-        condition: service_started
-      neo4j:
         condition: service_started
 
   # -------------------------------------------------------------
@@ -48,17 +43,17 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-picto_secure_password}
       POSTGRES_DB: ${POSTGRES_DB:-picto_path_db}
     ports:
-      - "${POSTGRES_PORT:-5432}:5432"
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-picto_user} -d ${POSTGRES_DB:-picto_path_db}"]
-      interval: 10s
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-picto_user} -d ${POSTGRES_DB:-picto_path_db}" ]
+      interval: 5s
       timeout: 5s
       retries: 5
 
   # -------------------------------------------------------------
-  # Base de Datos Vectorial: ChromaDB (Emparejamiento Semántico)
+  # Base de Datos Vectorial: ChromaDB (Similitud de Estímulos)
   # -------------------------------------------------------------
   chromadb:
     image: chromadb/chroma:latest
@@ -72,25 +67,8 @@ services:
       - IS_PERSISTENT=TRUE
       - ANONYMIZED_TELEMETRY=FALSE
 
-  # -------------------------------------------------------------
-  # Base de Datos de Grafos: Neo4j (Relaciones Habilidades/Comportamiento)
-  # -------------------------------------------------------------
-  neo4j:
-    image: neo4j:5-community
-    container_name: picto_neo4j
-    restart: unless-stopped
-    ports:
-      - "7474:7474" # Browser Web UI
-      - "7687:7687" # Bolt protocol
-    environment:
-      - NEO4J_AUTH=${NEO4J_USER:-neo4j}/${NEO4J_PASSWORD:-picto_neo4j_password}
-    volumes:
-      - neo4j_data:/data
-
 volumes:
   postgres_data:
     driver: local
   chroma_data:
-    driver: local
-  neo4j_data:
     driver: local
