@@ -1,55 +1,41 @@
-# Minijuego 1: Percepción Sensorial (Sensing Game)
+# Módulo de Percepción Sensorial (Sensing Game Backend)
 
 - **Eje evaluado:** Sensorial ($S$) vs Intuición ($N$).
 - **Variable generada:** `Sensing Score` (rango $0.0$ a $10.0$).
-- **Dinámica:** Desafío de agilidad visual "Encuentra las 5 Diferencias" con 4 escenarios dinámicos, cronómetro de alta resolución y penalización por demora.
 - **Fórmula Psicométrica:**
   $$\text{Sensing Score} = \max\Big(0, \min\big(10, (\text{aciertos} \times 2) - (\text{errores} \times 0.5) - 0.45 \times \max(0, \text{tiempo} - 4.0)\big)\Big)$$
 
 ---
 
-## Estructura del Minijuego (Estándar Modular)
+## Estructura Modular del Módulo Python
 
-Sigue la misma estructura estándar de `games/introversion_game`:
+Este módulo contiene la lógica matemática, psicométrica, inferencia MBTI y recomendaciones para el minijuego de Percepción Sensorial:
 
 ```text
 games/sensing_game/
-├── package.json              # Configuración de dependencias (React 18 + Lucide)
-├── vite.config.ts            # Configuración de Vite dev server y build
-├── tsconfig.json             # Configuración de TypeScript/JSX
-├── index.html                # Entry point HTML para Vite
-├── public/
-│   └── favicon.svg           # Ícono del minijuego
-├── src/
-│   ├── App.jsx               # Componente principal interactivo del juego
-│   ├── main.tsx              # Montaje de React DOM
-│   └── index.css             # Estilos y animaciones del juego
-│
-├── formula.py                # Módulo de cálculo matemático de Sensing Score
-├── classifier.py             # Módulo de inferencia y decodificación MBTI (16 tipos)
-├── rag_advice.py             # Módulo RAG con recomendaciones clínicas basadas en evidencia
-├── schemas.py                # Modelos de validación Pydantic
-├── router.py                 # Router FastAPI con endpoints listos para consumir
-├── cli.py                    # Script de verificación por terminal (python games/sensing_game/cli.py)
-└── sensing_all_in_one.html   # Build autónomo independiente para jugar con doble clic sin npm
+├── formula.py         # Cálculo matemático calibrado del Sensing Score (penalización por demora y errores)
+├── classifier.py      # Motor de inferencia y decodificación MBTI para los 16 tipos de personalidad
+├── rag_advice.py      # Generador RAG con recomendaciones clínicas y vocacionales basadas en evidencia
+├── schemas.py         # Modelos de validación de datos Pydantic (Request / Response)
+├── router.py          # Router FastAPI con endpoints listos para conectar (/calculate-score, /predict, /advice)
+├── cli.py             # Script de verificación por consola
+└── __init__.py        # Exportaciones del paquete
 ```
 
 ---
 
-## Cómo Correr este Minijuego
+## Verificación Local
 
-### Opción 1: Con Vite (Igual a `introversion_game`)
-```bash
-cd games/sensing_game
-npm install
-npm run dev
-```
-Abre en: `http://localhost:5174`
+Para verificar el correcto funcionamiento de toda la lógica psicométrica y matemática desde la consola:
 
-### Opción 2: Standalone sin dependencias
-Abre directamente [`sensing_all_in_one.html`](file:///d:/Documents/U/semestre5/ia/proyecto/games/sensing_game/sensing_all_in_one.html) en tu navegador.
-
-### Opción 3: Pruebas del Backend / Lógica Psicométrica en Python
 ```bash
 python games/sensing_game/cli.py
 ```
+
+## Endpoints para Integración Frontend Unificada
+
+El router de este módulo expone los siguientes endpoints listos para montar en el backend principal:
+
+* `POST /api/v1/sensing/calculate-score`: Recibe `{ hits, errors, elapsed_time }` y devuelve `{ sensing_score, is_sensing, penalty_time, penalty_errors }`.
+* `POST /api/v1/sensing/predict`: Clasifica el perfil MBTI completo recibiendo demográficos y los 4 puntajes.
+* `POST /api/v1/sensing/advice`: Genera recomendaciones personalizadas vocacionales y de manejo del estrés.
