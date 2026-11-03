@@ -13,8 +13,8 @@ picto-path-ai/
 ├── frontend/             # Interfaz de usuario (React / Web UI) y galería de estímulos visuales
 ├── backend/              # API REST con FastAPI, lógica de negocio y conectores de bases de datos
 ├── ai_model/             # Notebooks de experimentación, scripts de entrenamiento y modelos exportados
-├── data_and_graphs/      # Datasets limpios, scripts de carga a Neo4j y mapeos psicológicos
-├── docker-compose.yml    # Orquestación de contenedores locales (API + PostgreSQL + ChromaDB + Neo4j)
+├── data.csv              # Dataset usado para entrenar el clasificador MBTI
+├── docker-compose.yml    # Orquestación local de API + PostgreSQL + ChromaDB
 ├── .env.example          # Plantilla con variables de entorno para servicios y bases de datos
 ├── .gitignore            # Exclusión de pesos pesados, datasets masivos, entornos virtuales y vms
 └── README.md             # Documentación general del proyecto y flujo de trabajo
@@ -23,9 +23,9 @@ picto-path-ai/
 ### Detalle de Módulos
 
 * **`/frontend`**: Código de la aplicación cliente, componentes visuales reutilizables, pantallas del flujo de evaluación y catálogo de imágenes/estímulos en `public/gallery/`.
-* **`/backend`**: Endpoints en FastAPI, modelos ORM de persistencia, integración con el modelo de ML y conectores a PostgreSQL, ChromaDB y Neo4j.
+* **`/backend`**: Endpoints en FastAPI, integración con el modelo de ML y conectores preparados para PostgreSQL y ChromaDB.
 * **`/ai_model`**: Entorno de Machine Learning / Deep Learning, notebooks exploratorios, scripts reproducibles (`train.py`, `evaluate.py`) y carpeta `models/` para los artefactos exportados (`modelo_rf.pkl`, `pesos.pt`).
-* **`/data_and_graphs`**: Archivos estructurados (CSVs limpios), diccionarios de ontologías psicológicas (RIASEC / Big Five) y scripts Cypher/Python para poblar Neo4j.
+* **`/data.csv`**: Dataset de entrenamiento del clasificador Random Forest.
 
 ---
 
@@ -38,16 +38,15 @@ Para levantar el entorno completo de desarrollo con un solo comando:
    cp .env.example .env
    ```
 
-2. **Levantar los servicios (FastAPI, PostgreSQL, ChromaDB y Neo4j):**
+2. **Levantar los servicios (FastAPI, PostgreSQL y ChromaDB):**
    ```bash
    docker compose up --build
    ```
 
 3. **Acceder a los servicios locales:**
    - **API Backend & Docs:** [http://localhost:8000/docs](http://localhost:8000/docs)
-   - **PostgreSQL:** `localhost:5432` (DB: `picto_path_db`)
+   - **PostgreSQL:** `localhost:5433` (DB: `picto_path_db`; dentro de Docker usa `5432`)
    - **ChromaDB:** [http://localhost:8001](http://localhost:8001)
-   - **Neo4j Browser:** [http://localhost:7474](http://localhost:7474) (Credenciales en `.env`)
 
 4. **Levantamiento frontend (Abre una nueva temrinal)**
 

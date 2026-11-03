@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosecha de Lunaverde</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <main id="app">
+      <section id="intro" class="screen intro-screen">
+        <div class="intro-card">
+          <p class="eyebrow">ALDEA LUNAVERDE · EXPEDICIÓN DE COSECHA</p>
+          <h1>Cosecha de <span>Lunaverde</span></h1>
+          <p class="intro-copy">La cosecha es limitada. Distribuye las cestas entre los habitantes y recorre las cuatro escenas de la aldea.</p>
+          <div class="rule-list">
+            <p><b>01</b> Arrastra una cesta hasta un habitante.</p>
+            <p><b>02</b> Puedes entregar varias cestas a la misma persona.</p>
+            <p><b>03</b> Antes de terminar, pulsa una cesta entregada para devolverla.</p>
+          </div>
+          <div class="icon-guide">
+            <p class="eyebrow">¿QUÉ SIGNIFICAN LOS ICONOS?</p>
+            <div class="icon-guide-grid">
+              <span><img src="./assets/icons/trabajo.png" alt="">Trabajo y contribución</span>
+              <span><img src="./assets/icons/hambre.png" alt="">Hambre y necesidad</span>
+              <span><img src="./assets/icons/enfermedad.png" alt="">Salud y recuperación</span>
+              <span><img src="./assets/icons/familia.png" alt="">Responsabilidades familiares</span>
+              <span><img src="./assets/icons/necesidad.png" alt="">Circunstancia personal</span>
+              <span><img src="./assets/icons/cumpleaños.png" alt="">Situación especial</span>
+            </div>
+          </div>
+          <button id="start-button" class="primary-button">Comenzar reparto <span>→</span></button>
+          <p class="disclaimer">Las decisiones se registran para una exploración académica. No hay respuestas correctas o incorrectas.</p>
+        </div>
+      </section>
+
+      <section id="game" class="screen game-screen hidden">
+        <header class="game-header">
+          <div>
+            <p class="eyebrow">COSECHA DE LUNAVERDE</p>
+            <h2 id="round-name">La plaza de la cosecha</h2>
+          </div>
+          <div class="round-info">
+            <strong id="round-number">1 / 4</strong>
+            <span>Ronda</span>
+          </div>
+          <div class="basket-counter">
+            <img src="./assets/baskets/basket.png" alt="">
+            <strong id="basket-count">3</strong>
+            <span>cestas disponibles</span>
+          </div>
+        </header>
+
+        <div id="scene" class="scene">
+          <div class="scene-overlay">
+            <span id="scene-label">LA PLAZA DE LA COSECHA</span>
+            <p id="scene-instruction">Arrastra las cestas hacia los habitantes.</p>
+          </div>
+          <div id="characters" class="characters"></div>
+        </div>
+
+        <section class="distribution-panel">
+          <div class="inventory-heading">
+            <div>
+              <p class="eyebrow">INVENTARIO</p>
+              <h3>Cestas de lunaverde</h3>
+            </div>
+            <p id="round-status">0 cestas distribuidas</p>
+          </div>
+          <div id="basket-inventory" class="basket-inventory" aria-label="Cestas disponibles"></div>
+          <div class="finish-row">
+            <p>Arrastra con el mouse o toca una cesta y luego un habitante.</p>
+            <button id="finish-button" class="primary-button">Terminar reparto <span>→</span></button>
+          </div>
+        </section>
+      </section>
+
+      <section id="results" class="screen result-screen hidden">
+        <div class="result-card">
+          <p class="eyebrow">CUADERNO DE LA ALDEA · PARTIDA COMPLETADA</p>
+          <h1>Gracias por ayudar a <span>Lunaverde</span></h1>
+          <p class="result-copy">Has completado las cuatro rondas de distribución. Este resultado es una tendencia exploratoria y no un diagnóstico psicológico.</p>
+          <div class="score-box">
+            <span>Puntaje exploratorio Thinking / Feeling</span>
+            <strong id="final-score">5.0</strong><small> / 10</small>
+            <p id="score-label">Distribución relativamente equilibrada</p>
+          </div>
+          <div class="formula-box">
+            <span>Fórmula del puntaje</span>
+            <p><i>T<sub>r</sub></i> = (suma de cestas × valor T del personaje) / cestas disponibles</p>
+            <p><i>F<sub>r</sub></i> = (suma de cestas × valor F del personaje) / cestas disponibles</p>
+            <p><i>S<sub>r</sub></i> = 50 + 50 × (<i>T<sub>r</sub></i> − <i>F<sub>r</sub></i>) / (<i>T<sub>r</sub></i> + <i>F<sub>r</sub></i>)</p>
+            <p><i>Score modelo</i> = promedio(<i>S<sub>1</sub></i>, <i>S<sub>2</sub></i>, <i>S<sub>3</sub></i>, <i>S<sub>4</sub></i>) / 10</p>
+          </div>
+          <div id="round-summary" class="round-summary"></div>
+          <div class="result-actions">
+            <button id="return-panel-button" class="primary-button">Regresar al panel</button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

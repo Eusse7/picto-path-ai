@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SensingGame from './components/SensingGame';
 import IntroversionGame from './components/IntroversionGame';
 import JudgingGame from './components/JudgingGame';
+import ThinkingGame from './components/ThinkingGame';
 import {
   Sparkles,
   Gamepad2,
@@ -438,7 +439,8 @@ export default function App() {
         interest: demographics.interest
       };
 
-      const response = await fetch('http://localhost:8000/api/v1/test/predict-mbti', {
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api/v1';
+      const response = await fetch(`${apiBaseUrl}/test/predict-mbti`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -509,6 +511,18 @@ export default function App() {
       <JudgingGame
         onBack={handleBackToHub}
         onComplete={handleJudgingComplete}
+      />
+    );
+  }
+
+  if (activeGame === 'thinking') {
+    return (
+      <ThinkingGame
+        onBack={handleBackToHub}
+        onScoreCalculated={(score) => {
+          setScores(prev => ({ ...prev, thinking: Number(score.toFixed(2)) }));
+          setGamesCompleted(prev => ({ ...prev, thinking: true }));
+        }}
       />
     );
   }
@@ -1026,7 +1040,7 @@ export default function App() {
                   <Brain size={26} />
                 </div>
                 {gamesCompleted.thinking ? (
-                  <span className="badge-pill-clean badge-mint" style={{ position: 'relative', bottom: 'auto' }}><Check size={12} /> Confirmado</span>
+                  <span className="badge-pill-clean badge-mint" style={{ position: 'relative', bottom: 'auto' }}><Check size={12} /> Realizado</span>
                 ) : (
                   <span className={`badge-pill-clean ${isProfileSaved ? 'badge-amber' : 'badge-locked'}`} style={{ position: 'relative', bottom: 'auto' }}>
                     {isProfileSaved ? 'En desarrollo' : 'Bloqueado'}
@@ -1046,18 +1060,12 @@ export default function App() {
             </div>
 
             <button
-              onClick={() => {
-                if (!isProfileSaved) {
-                  handleOpenGame('thinking');
-                } else {
-                  setCalibrationModal('thinking');
-                }
-              }}
+              onClick={() => handleOpenGame('thinking')}
               className="btn-soony-blue"
               style={{
                 width: '100%',
-                background: isProfileSaved ? 'var(--pastel-amber)' : '#e2e8f0',
-                color: isProfileSaved ? '#78350f' : '#64748b',
+                background: 'var(--pastel-amber)',
+                color: '#78350f',
                 padding: '12px',
                 fontSize: '0.92rem'
               }}
@@ -1065,9 +1073,9 @@ export default function App() {
               {!isProfileSaved ? (
                 <><Lock size={15} /> Completa tu perfil</>
               ) : gamesCompleted.thinking ? (
-                <>Ajustar puntuación <Sliders size={15} /></>
+                <>Jugar nuevamente <RotateCcw size={15} /></>
               ) : (
-                <>Ajustar puntuación <Sliders size={15} /></>
+                <>Jugar pensamiento <ArrowRight size={15} /></>
               )}
             </button>
           </div>

@@ -42,25 +42,37 @@ class ModelInferenceService:
         - lista/array
         Devuelve la clase predicha (ej. 'ENTP', 'INTJ') o None si no hay modelo disponible.
         """
+        result = self.predict_with_metadata(features)
+        return result["predicted_mbti"] if result else None
+
+    def predict_with_metadata(self, features):
         if self.model is None:
             return None
 
         try:
-            if isinstance(features, dict):
-                df = pd.DataFrame([features])
-                return self.model.predict(df)[0]
-            elif isinstance(features, pd.DataFrame):
-                return self.model.predict(features)[0]
-            elif isinstance(features, (list, tuple)):
-                cols = ['Age', 'Education', 'Introversion Score', 'Sensing Score', 'Thinking Score', 'Judging Score', 'Gender', 'Interest']
-                if len(features) == len(cols):
-                    df = pd.DataFrame([features], columns=cols)
-                    return self.model.predict(df)[0]
-                return self.model.predict([features])[0]
-            else:
-                return self.model.predict([features])[0]
-        except Exception as e:
-            print(f"[Error] Fallo en inferencia del modelo: {e}")
+            frame = self._to_frame(features)
+            prediction = str(self.model.predict(frame)[0])
+            confidence = None
+            if hasattr(self.model, "predict_proba"):
+                probabilities = self.model.predict_proba(frame)[0]
+                confidence = round(float(max(probabilities)), 4)
+            return {
+                "predicted_mbti": prediction,
+                "confidence": confidence,
+                "source": "RandomForestClassifier (modelo_rf.pkl)",
+            }
+        except (ValueError, TypeError, KeyError) as error:
+            print(f"[Error] Fallo de validación en inferencia: {error}")
             return None
+
+    def _to_frame(self, features):
+        if isinstance(features, dict):
+            return pd.DataFrame([features])
+        if isinstance(features, pd.DataFrame):
+            return features
+        columns = ['Age', 'Education', 'Introversion Score', 'Sensing Score', 'Thinking Score', 'Judging Score', 'Gender', 'Interest']
+        if isinstance(features, (list, tuple)) and len(features) == len(columns):
+            return pd.DataFrame([features], columns=columns)
+        return pd.DataFrame([features])
 
 inference_service = ModelInferenceService()

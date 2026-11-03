@@ -22,6 +22,7 @@ frontend/
 ```
 
 ## Flujo de Trabajo
-1. **Fase de Mocks:** Consumir los datos simulados provistos por la API en `/api/v1/test/questions` y `/api/v1/test/submit-mock`.
-2. **Galería de Estímulos:** La carpeta `public/gallery/` almacena las imágenes organizadas por categorías de estímulos para la toma de decisiones visuales del usuario.
-3. **Conexión Real:** Transición a los endpoints de producción una vez integrados el modelo de clasificación y las bases de datos.
+1. **Ejecución:** `npm install` y `npm run dev` levantan el hub React en `http://localhost:5173`.
+2. **Minijuegos:** El hub monta Introversion, Sensing, Judging y Thinking desde la única carpeta `games/thinking_game`.
+3. **Thinking:** Vite lo sirve automáticamente en `/thinking_game`; no requiere una segunda terminal ni un segundo servidor.
+4. **Predicción:** El frontend usa `VITE_API_BASE_URL` si está definida; por defecto consume `http://localhost:8000/api/v1/test/predict-mbti`.

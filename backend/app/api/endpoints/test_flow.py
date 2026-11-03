@@ -9,8 +9,27 @@ from app.schemas.test_schema import (
 )
 from app.services.mock_service import get_mock_questions, generate_mock_results
 from app.services.model_inference import inference_service
+from app.schemas.game_schema import AssessmentSubmission, AssessmentResponse
+from app.services.assessment_service import assessment_service
 
 router = APIRouter()
+
+@router.post("/sessions", summary="Crear sesión para acumular resultados de minijuegos")
+def create_assessment_session():
+    return {"session_id": assessment_service.create_session()}
+
+
+@router.post("/submit-results", response_model=AssessmentResponse, summary="Reunir juegos y ejecutar inferencia MBTI")
+def submit_assessment(submission: AssessmentSubmission):
+    session_id, scores, prediction = assessment_service.predict(submission)
+    return AssessmentResponse(
+        session_id=session_id,
+        scores={key: scores[key] for key in ("introversion", "sensing", "thinking", "judging")},
+        predicted_mbti=prediction["predicted_mbti"],
+        personality_name=prediction["personality_name"],
+        confidence=prediction.get("confidence"),
+        source=prediction["source"],
+    )
 
 MBTI_TITLES = {
     "ISTJ": "El Inspector / Logista",
