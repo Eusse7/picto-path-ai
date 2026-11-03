@@ -48,24 +48,6 @@ Para levantar el entorno completo de desarrollo con un solo comando:
    - **PostgreSQL:** `localhost:5433` (DB: `picto_path_db`; dentro de Docker usa `5432`)
    - **ChromaDB:** [http://localhost:8001](http://localhost:8001)
 
-4. **Levantamiento frontend (Abre una nueva temrinal)**
-
-     ```bash
-   cd picto-path-ai
-   ```
-
-      ```bash
-   cd frontend
-   ```
-     
-   ```bash
-   npm install
-      ```
-   
-   ```bash
-   npm run dev
-      ```
-
 ---
 
 ## Estrategia de Ramas
