@@ -1,5 +1,8 @@
 import os
-import joblib
+try:
+    import joblib
+except ImportError:
+    joblib = None
 import pandas as pd
 from app.core.config import settings
 
@@ -22,7 +25,7 @@ class ModelInferenceService:
     def _load_model(self):
         """Carga el modelo exportado desde ai_model/models."""
         target_path = self._resolve_model_path()
-        if target_path:
+        if target_path and joblib is not None:
             try:
                 self.model = joblib.load(target_path)
                 print(f"[Info] Modelo cargado exitosamente desde {target_path}")

@@ -49,6 +49,17 @@ Para levantar el entorno completo de desarrollo con un solo comando:
    - **ChromaDB:** [http://localhost:8001](http://localhost:8001)
    - **Neo4j Browser:** [http://localhost:7474](http://localhost:7474) (Credenciales en `.env`)
 
+4. **Levantamiento frontend (Abre una nueva temrinal)**
+   ```bash
+
+  cd picto-path-ai
+
+  cd frontend
+
+   npm install
+   npm run dev
+   ```
+
 ---
 
 ## Estrategia de Ramas

@@ -1,0 +1,17 @@
+:root { --ink:#22223b; --paper:#f7f5fb; --accent:#e63946; font-family: 'Trebuchet MS', system-ui, sans-serif; }
+body { margin:0; background:var(--paper); color:var(--ink); display:grid; place-items:center; min-height:100vh; }
+.card { background:#fff; border:2px solid var(--ink); border-radius:14px; padding:24px; max-width:460px; box-shadow:6px 6px 0 var(--ink); }
+.card.wide { max-width:520px; text-align:center; }
+.overlay { position:fixed; inset:0; background:rgba(34,34,59,.6); display:grid; place-items:center; }
+button { font:inherit; font-weight:700; background:var(--accent); color:#fff; border:2px solid var(--ink); border-radius:8px; padding:10px 16px; cursor:pointer; }
+button.ghost { background:#fff; color:var(--ink); }
+button:focus-visible { outline:3px solid var(--ink); outline-offset:2px; }
+.grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.scn { display:flex; flex-direction:column; gap:6px; align-items:center; color:var(--ink); text-align:center; }
+.scn .big { font-size:2rem; } .scn small { font-weight:400; }
+canvas { max-width:100%; border:2px solid var(--ink); border-radius:8px; display:block; margin:12px auto; }
+.hud { font-weight:700; }
+.score { font-size:4rem; font-weight:800; } .score small { font-size:1.2rem; }
+code { display:block; background:#f0edf7; padding:8px; border-radius:6px; margin:12px 0; }
+table { width:100%; border-collapse:collapse; margin-bottom:8px; } td { padding:4px; border-bottom:1px solid #ddd; }
+@media (prefers-reduced-motion: reduce) { * { transition:none !important; } }

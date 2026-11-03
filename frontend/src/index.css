@@ -1,0 +1,348 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+
+:root {
+  /* Tipografías */
+  --font-bubble: 'Fredoka', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Paleta Azul Oceánico y Difuminados Suaves */
+  --blue-hero-from: #1d4ed8;     /* Azul cobalto vibrante pero suave */
+  --blue-hero-mid: #1e3a8a;      /* Azul marino real */
+  --blue-hero-to: #0f172a;       /* Noche azul pizarra profunda */
+  --blue-soft: #f0f6ff;          /* Azul nube muy claro para fondo de contenido */
+  --blue-card-border: #e2e8f0;   /* Borde suave */
+
+  /* Tonos Pasteles No Reactivos */
+  --pastel-mint: #34d399;        /* Verde menta suave */
+  --pastel-mint-soft: #ecfdf5;
+  --pastel-mint-dark: #065f46;
+
+  --pastel-sky: #38bdf8;         /* Celeste suave */
+  --pastel-sky-soft: #f0f9ff;
+  --pastel-sky-dark: #0369a1;
+
+  --pastel-coral: #fb7185;       /* Coral suave */
+  --pastel-coral-soft: #fff1f2;
+  --pastel-coral-dark: #9f1239;
+
+  --pastel-amber: #fbbf24;       /* Ámbar suave */
+  --pastel-amber-soft: #fffbeb;
+  --pastel-amber-dark: #92400e;
+
+  /* Textos Suaves y Confortables a la Vista (Gris Clarito Relajante) */
+  --text-dark: #0f172a;
+  --text-muted-dark: #475569;
+  --text-light: #e2e8f0;         /* Gris clarito suave que no encandila */
+  --text-muted-light: #94a3b8;   /* Gris neutro apacible */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--blue-hero-to);
+  color: var(--text-light);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Tipografía de Burbuja Chunky */
+.bubble-title {
+  font-family: var(--font-bubble);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.18;
+  text-transform: uppercase;
+}
+
+/* Divisores Ondulados Festoneados (Color Azul Suave) */
+.scallop-divider-top {
+  width: 100%;
+  height: 38px;
+  background-repeat: repeat-x;
+  background-size: 48px 38px;
+  background-image: radial-gradient(circle at 24px 0, transparent 24px, var(--blue-soft) 25px);
+  position: relative;
+  z-index: 10;
+}
+
+.scallop-divider-bottom {
+  width: 100%;
+  height: 38px;
+  background-repeat: repeat-x;
+  background-size: 48px 38px;
+  background-image: radial-gradient(circle at 24px 38px, transparent 24px, var(--blue-soft) 25px);
+  position: relative;
+  z-index: 10;
+}
+
+/* Contenedor Satinado para el Formulario */
+.glass-form-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  border-radius: 32px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+/* Inputs Píldora Blancos */
+.pill-input {
+  width: 100%;
+  background: #ffffff;
+  color: #0f172a;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 2px solid transparent;
+  border-radius: 9999px;
+  padding: 13px 20px;
+  outline: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease;
+}
+
+.pill-input:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.25);
+}
+
+/* Select Desplegable Píldora */
+.pill-select {
+  width: 100%;
+  background: #ffffff;
+  color: #0f172a;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 2px solid transparent;
+  border-radius: 9999px;
+  padding: 13px 44px 13px 20px;
+  outline: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231e40af' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  background-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.pill-select:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.25);
+}
+
+/* Botones de Opción Píldora */
+.pill-choice-btn {
+  padding: 11px 18px;
+  border-radius: 9999px;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.pill-choice-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  transform: translateY(-2px);
+}
+
+.pill-choice-btn.selected {
+  background: #ffffff;
+  color: #1d4ed8;
+  border-color: #ffffff;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Botón Principal */
+.btn-soony-blue {
+  font-family: var(--font-bubble);
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: #38bdf8;
+  color: #0c4a6e;
+  border: none;
+  border-radius: 9999px;
+  padding: 15px 32px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(56, 189, 248, 0.25);
+  transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-soony-blue:hover:not(:disabled) {
+  background: #7dd3fc;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 26px rgba(56, 189, 248, 0.35);
+}
+
+.btn-soony-blue:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Card Amigable, Bonita y Limpia */
+.game-card-friendly {
+  background: #ffffff;
+  color: var(--text-dark);
+  border: 1.5px solid var(--blue-card-border);
+  border-radius: 28px;
+  padding: 30px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.05);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.game-card-friendly:hover {
+  transform: translateY(-5px);
+  border-color: #93c5fd;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.1);
+}
+
+.game-card-friendly.locked {
+  opacity: 0.88;
+  background: #fafcff;
+}
+
+/* Franja Superior Sutil de Cada Card */
+.card-accent-strip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+}
+
+/* Insignias Limpias */
+.badge-pill-clean {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  position: relative !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  z-index: 10;
+}
+
+.badge-pill-clean.mint, .badge-pill-clean.badge-mint {
+  background: var(--pastel-mint-soft);
+  color: var(--pastel-mint-dark);
+  border: 1px solid rgba(52, 211, 153, 0.4);
+}
+
+.badge-pill-clean.sky, .badge-pill-clean.badge-sky {
+  background: var(--pastel-sky-soft);
+  color: var(--pastel-sky-dark);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+}
+
+.badge-pill-clean.coral, .badge-pill-clean.badge-coral {
+  background: var(--pastel-coral-soft);
+  color: var(--pastel-coral-dark);
+  border: 1px solid rgba(251, 113, 133, 0.4);
+}
+
+.badge-pill-clean.amber, .badge-pill-clean.badge-amber {
+  background: var(--pastel-amber-soft);
+  color: var(--pastel-amber-dark);
+  border: 1px solid rgba(251, 191, 36, 0.4);
+}
+
+.badge-pill-clean.locked, .badge-pill-clean.badge-locked {
+  background: #f1f5f9;
+  color: #64748b;
+  border: 1px solid #cbd5e1;
+}
+
+/* Barra de Progreso */
+.progress-track-friendly {
+  width: 100%;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill-friendly {
+  height: 100%;
+  background: linear-gradient(90deg, #38bdf8, #34d399);
+  border-radius: 9999px;
+  transition: width 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Compatibilidad con minijuegos internos */
+.card-glow {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 16px;
+}
+
+/* Botón Flotante Emergente de Progreso */
+.floating-progress-btn {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.floating-progress-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(56, 189, 248, 0.35);
+  border-color: #38bdf8;
+}
+
+/* Animaciones para las Aleluyas / Confetti */
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-20px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(105vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.confetti-piece {
+  position: fixed;
+  top: -20px;
+  z-index: 999999;
+  pointer-events: none;
+  border-radius: 3px;
+  animation: confettiFall 3.5s linear forwards;
+}
