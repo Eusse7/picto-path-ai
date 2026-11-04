@@ -1,4 +1,5 @@
-# Picto-Path AI — Sistema Inteligente de Orientación Vocacional Basado en Estímulos Visuales y Clasificación MBTI
+# Picto-Path AI
+
 
 > **Curso:** Inteligencia Artificial 
 > **Institución:** Universidad EAFIT  
