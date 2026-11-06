@@ -25,6 +25,8 @@ Cuantificación conductual objetiva: Traduce acciones visuales, agilidad percept
 Clasificación supervisada de alta precisión: Implementa un pipeline con Random Forest entrenado sobre 43,744 muestras, logrando discriminar los 16 perfiles de personalidad con una exactitud (Accuracy) y F1-score superiores al 88%.
 
 Recomendaciones personalizadas accionables: Conecta de forma dinámica los patrones cognitivos predichos con rutas de desarrollo personal, competencias clave y recomendaciones afines al perfil psicológico del usuario.
+
+
 ---
 
 ## 2. Objetivos
