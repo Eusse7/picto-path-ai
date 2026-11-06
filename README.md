@@ -15,7 +15,6 @@
 
 **Picto-Path AI** es un sistema inteligente de orientación vocacional que reemplaza los cuestionarios de texto tradicionales por un test interactivo de estímulos visuales. Analiza las elecciones visuales del usuario para clasificar rasgos de personalidad, mapearlos con marcos psicológicos validados y recomendar perfiles profesionales afines.
 
-**Picto-Path AI** (pq es relevante y que aporta)
 
 **Picto-Path AI** es relevante porque supera las principales limitaciones de los test de personalidad tradicionales basados en texto —como la fatiga del usuario, la subjetividad de la autopercepción y el sesgo de deseabilidad social— mediante la captura directa de telemetría conductual en entornos gamificados. Al reemplazar las preguntas estáticas por cuatro minijuegos interactivos, el sistema evalúa el comportamiento real del usuario bajo estímulos visuales dinámicos.
 Su aporte fundamental se articula en tres ejes técnicos y prácticos:
